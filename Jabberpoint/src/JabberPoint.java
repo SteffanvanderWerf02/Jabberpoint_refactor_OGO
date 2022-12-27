@@ -1,5 +1,4 @@
-import javax.swing.JOptionPane;
-
+import javax.swing.*;
 import java.io.IOException;
 
 /**
@@ -27,11 +26,14 @@ public class JabberPoint {
         Presentation presentation = new Presentation();
         new SlideViewerFrame(JABVERSION, presentation);
         try {
+            Reader reader = AccessorFactory.getReaderWithArgs(argv);
+
             if (argv.length == 0) { //a demo presentation
-                Accessor.getDemoAccessor().loadFile(presentation, "");
+                reader.loadFile(presentation, "");
             } else {
-                new XMLAccessor().loadFile(presentation, argv[0]);
+                reader.loadFile(presentation, argv[0]);
             }
+
             presentation.setSlideNumber(0);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,
