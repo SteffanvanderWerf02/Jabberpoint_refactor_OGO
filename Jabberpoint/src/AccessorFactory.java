@@ -18,10 +18,10 @@ public class AccessorFactory {
 
 
     public static Writer getWriter(String filename) {
-        if (filename.endsWith(Reader.DEFAULT_EXTENSION)) {
+        if (filename.endsWith(Writer.DEFAULT_EXTENSION)) {
             return new XMLWriter();
+        } else {
+            throw new IllegalArgumentException("Unknown file type: " + filename);
         }
-
-        return null;
     }
 }
