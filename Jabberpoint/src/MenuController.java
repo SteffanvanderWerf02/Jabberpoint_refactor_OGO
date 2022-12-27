@@ -1,13 +1,8 @@
-import java.awt.MenuBar;
-import java.awt.Frame;
-import java.awt.Menu;
-import java.awt.MenuItem;
-import java.awt.MenuShortcut;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
-
-import javax.swing.JOptionPane;
 
 /**
  * <p>The controller for the menu</p>
@@ -51,9 +46,9 @@ public class MenuController extends MenuBar {
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.clear();
-                Accessor xmlAccessor = new XMLAccessor();
+                Reader reader = AccessorFactory.getReader(TESTFILE);
                 try {
-                    xmlAccessor.loadFile(presentation, TESTFILE);
+                    reader.loadFile(presentation, TESTFILE);
                     presentation.setSlideNumber(0);
                 } catch (IOException exc) {
                     JOptionPane.showMessageDialog(parent, IOEX + exc,
@@ -72,9 +67,9 @@ public class MenuController extends MenuBar {
         fileMenu.add(menuItem = mkMenuItem(SAVE));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Accessor xmlAccessor = new XMLAccessor();
+                Writer writer = AccessorFactory.getWriter(SAVEFILE);
                 try {
-                    xmlAccessor.saveFile(presentation, SAVEFILE);
+                    writer.saveFile(presentation, SAVEFILE);
                 } catch (IOException exc) {
                     JOptionPane.showMessageDialog(parent, IOEX + exc,
                             SAVEERR, JOptionPane.ERROR_MESSAGE);

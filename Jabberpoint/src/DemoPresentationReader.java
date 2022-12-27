@@ -1,11 +1,5 @@
-/**
- * A built-in demo presentation
- *
- * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
- * @version 1.6 2014/05/16 Sylvia Stuurman
- */
+public class DemoPresentationReader extends Reader {
 
-class DemoPresentation extends Accessor {
 
     public void loadFile(Presentation presentation, String unusedFilename) {
         presentation.setTitle("Demo Presentation");
@@ -45,7 +39,4 @@ class DemoPresentation extends Accessor {
         presentation.append(slide);
     }
 
-    public void saveFile(Presentation presentation, String unusedFilename) {
-        throw new IllegalStateException("Save As->Demo! called");
-    }
 }

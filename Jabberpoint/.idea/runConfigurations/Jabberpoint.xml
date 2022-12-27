@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Jabberpoint" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="JabberPoint" />
+    <module name="Jabberpoint" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
