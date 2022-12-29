@@ -25,6 +25,8 @@ public class JabberPoint {
         Style.createStyles();
         Presentation presentation = new Presentation();
         new SlideViewerFrame(JABVERSION, presentation);
+        SlideController slideController = new SlideController();
+        presentation.setSlideController(slideController);
         try {
             Reader reader = AccessorFactory.getReaderWithArgs(argv);
 
@@ -34,7 +36,8 @@ public class JabberPoint {
                 reader.loadFile(presentation, argv[0]);
             }
 
-            presentation.setSlideNumber(0);
+            presentation.getSlideController().setSlideNumber(0);
+            presentation.updateSlideView();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,
                     IOERR + ex, JABERR,

@@ -13,8 +13,8 @@ public class XMLWriter extends Writer {
         out.print("<showtitle>");
         out.print(presentation.getTitle());
         out.println("</showtitle>");
-        for (int slideNumber = 0; slideNumber < presentation.getSize(); slideNumber++) {
-            Slide slide = presentation.getSlide(slideNumber);
+        for (int slideNumber = 0; slideNumber < presentation.getSlideController().getSize(); slideNumber++) {
+            Slide slide = presentation.getSlideController().getSlide(slideNumber);
             out.println("<slide>");
             out.println("<title>" + slide.getTitle() + "</title>");
             Vector<SlideItem> slideItems = slide.getSlideItems();

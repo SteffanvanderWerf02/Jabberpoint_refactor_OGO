@@ -45,11 +45,12 @@ public class MenuController extends MenuBar {
         fileMenu.add(menuItem = mkMenuItem(OPEN));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                presentation.clear();
+                presentation.getSlideController().clear();
                 Reader reader = AccessorFactory.getReader(TESTFILE);
                 try {
                     reader.loadFile(presentation, TESTFILE);
-                    presentation.setSlideNumber(0);
+                    presentation.getSlideController().setSlideNumber(0);
+                    presentation.updateSlideView();
                 } catch (IOException exc) {
                     JOptionPane.showMessageDialog(parent, IOEX + exc,
                             LOADERR, JOptionPane.ERROR_MESSAGE);
@@ -60,7 +61,7 @@ public class MenuController extends MenuBar {
         fileMenu.add(menuItem = mkMenuItem(NEW));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                presentation.clear();
+                presentation.getSlideController().clear();
                 parent.repaint();
             }
         });
@@ -70,6 +71,7 @@ public class MenuController extends MenuBar {
                 Writer writer = AccessorFactory.getWriter(SAVEFILE);
                 try {
                     writer.saveFile(presentation, SAVEFILE);
+                    presentation.updateSlideView();
                 } catch (IOException exc) {
                     JOptionPane.showMessageDialog(parent, IOEX + exc,
                             SAVEERR, JOptionPane.ERROR_MESSAGE);
@@ -88,13 +90,15 @@ public class MenuController extends MenuBar {
         viewMenu.add(menuItem = mkMenuItem(NEXT));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                presentation.nextSlide();
+                presentation.getSlideController().nextSlide();
+                presentation.updateSlideView();
             }
         });
         viewMenu.add(menuItem = mkMenuItem(PREV));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                presentation.prevSlide();
+                presentation.getSlideController().prevSlide();
+                presentation.updateSlideView();
             }
         });
         viewMenu.add(menuItem = mkMenuItem(GOTO));
@@ -102,7 +106,8 @@ public class MenuController extends MenuBar {
             public void actionPerformed(ActionEvent actionEvent) {
                 String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
                 int pageNumber = Integer.parseInt(pageNumberStr);
-                presentation.setSlideNumber(pageNumber - 1);
+                presentation.getSlideController().setSlideNumber(pageNumber - 1);
+                presentation.updateSlideView();
             }
         });
         add(viewMenu);
