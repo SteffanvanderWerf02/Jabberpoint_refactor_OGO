@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-
-
 /**
  * <p>Presentations keeps track of the slides in a presentation.</p>
  * <p>Only one instance of this class is available.</p>
