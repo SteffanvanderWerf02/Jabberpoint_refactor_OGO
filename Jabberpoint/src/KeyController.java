@@ -21,12 +21,14 @@ public class KeyController extends KeyAdapter {
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_ENTER:
             case '+':
-                presentation.nextSlide();
+                presentation.getSlideController().nextSlide();
+                presentation.updateSlideView();
                 break;
             case KeyEvent.VK_PAGE_UP:
             case KeyEvent.VK_UP:
             case '-':
-                presentation.prevSlide();
+                presentation.getSlideController().prevSlide();
+                presentation.updateSlideView();
                 break;
             case 'q':
             case 'Q':

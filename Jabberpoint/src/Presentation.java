@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-
-
 /**
  * <p>Presentations keeps track of the slides in a presentation.</p>
  * <p>Only one instance of this class is available.</p>
@@ -11,22 +8,24 @@ import java.util.ArrayList;
 
 public class Presentation {
     private String showTitle; //The title of the presentation
-    private ArrayList<Slide> showList = null; //An ArrayList with slides
-    private int currentSlideNumber = 0; //The number of the current slide
     private SlideViewerComponent slideViewComponent; //The view component of the slides
-
+    private SlideController slideController; //The controller of the slides
     public Presentation() {
         slideViewComponent = null;
-        clear();
+        slideController = null;
     }
 
-    public Presentation(SlideViewerComponent slideViewerComponent) {
+    public Presentation(SlideViewerComponent slideViewerComponent, SlideController slideController) {
         this.slideViewComponent = slideViewerComponent;
-        clear();
+        this.slideController = slideController;
+        slideController.clear();
     }
 
-    public int getSize() {
-        return showList.size();
+    public SlideController getSlideController() {
+        return slideController;
+    }
+    public void setSlideController(SlideController controller) {
+        this.slideController = controller;
     }
 
     public String getTitle() {
@@ -41,64 +40,9 @@ public class Presentation {
         this.slideViewComponent = slideViewerComponent;
     }
 
-    //Returns the number of the current slide
-    public int getSlideNumber() {
-        return currentSlideNumber;
+    public void updateSlideView() {
+        slideViewComponent.update(this, this.slideController.getCurrentSlide());
     }
-
-    //Change the current slide number and report it the the window
-    public void setSlideNumber(int number) {
-        if (slideViewComponent != null) {
-            // If the number is out of range, do nothing
-            if (SlideExists(number)){
-                currentSlideNumber = number;
-            }
-
-            // Update the view with data
-            slideViewComponent.update(this, getCurrentSlide());
-        }
-    }
-
-    //Navigate to the previous slide unless we are at the first slide
-    public void prevSlide() {
-        if (currentSlideNumber > 0) {
-            setSlideNumber(currentSlideNumber - 1);
-        }
-    }
-
-    //Navigate to the next slide unless we are at the last slide
-    public void nextSlide() {
-        if (currentSlideNumber < (showList.size() - 1)) {
-            setSlideNumber(currentSlideNumber + 1);
-        }
-    }
-
-    //Remove the presentation
-    void clear() {
-        showList = new ArrayList<>();
-        setSlideNumber(-1);
-    }
-
-    //Add a slide to the presentation
-    public void append(Slide slide) {
-        showList.add(slide);
-    }
-
-    //Return a slide with a specific number
-    public Slide getSlide(int number) {
-        return showList.get(number);
-    }
-
-    // Check if a slide exists
-    public boolean SlideExists(int number) {
-        return number >= 0 && number < getSize();
-    }
-
-    //Return the current slide
-    public Slide getCurrentSlide() {
-        return showList.get(currentSlideNumber);
-    }
-
     public void exit(int n) {
         System.exit(n);
     }

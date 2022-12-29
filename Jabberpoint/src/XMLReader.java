@@ -56,7 +56,7 @@ public class XMLReader extends Reader {
                 Element xmlSlide = (Element) slides.item(slideNumber);
                 Slide slide = new Slide();
                 slide.setTitle(getTitle(xmlSlide, SLIDETITLE));
-                presentation.append(slide);
+                presentation.getSlideController().append(slide);
 
                 NodeList slideItems = xmlSlide.getElementsByTagName(ITEM);
                 maxItems = slideItems.getLength();
