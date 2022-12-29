@@ -48,8 +48,13 @@ public class Presentation {
 
     //Change the current slide number and report it the the window
     public void setSlideNumber(int number) {
-        currentSlideNumber = number;
         if (slideViewComponent != null) {
+            // If the number is out of range, do nothing
+            if (SlideExists(number)){
+                currentSlideNumber = number;
+            }
+
+            // Update the view with data
             slideViewComponent.update(this, getCurrentSlide());
         }
     }
@@ -81,15 +86,17 @@ public class Presentation {
 
     //Return a slide with a specific number
     public Slide getSlide(int number) {
-        if (number < 0 || number >= getSize()) {
-            return null;
-        }
         return showList.get(number);
+    }
+
+    // Check if a slide exists
+    public boolean SlideExists(int number) {
+        return number >= 0 && number < getSize();
     }
 
     //Return the current slide
     public Slide getCurrentSlide() {
-        return getSlide(currentSlideNumber);
+        return showList.get(currentSlideNumber);
     }
 
     public void exit(int n) {
