@@ -10,9 +10,10 @@ public class Presentation {
     private String showTitle; //The title of the presentation
     private SlideViewerComponent slideViewComponent; //The view component of the slides
     private SlideController slideController; //The controller of the slides
-    public Presentation() {
-        slideViewComponent = null;
-        slideController = null;
+
+    public Presentation(SlideController slideController) {
+        this.slideViewComponent = null;
+        this.slideController = slideController;
     }
 
     public Presentation(SlideViewerComponent slideViewerComponent, SlideController slideController) {

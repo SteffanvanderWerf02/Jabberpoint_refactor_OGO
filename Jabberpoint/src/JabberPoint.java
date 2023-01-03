@@ -23,10 +23,7 @@ public class JabberPoint {
     public static void main(String[] argv) {
 
         Style.createStyles();
-        Presentation presentation = new Presentation();
-        new SlideViewerFrame(JABVERSION, presentation);
-        SlideController slideController = new SlideController();
-        presentation.setSlideController(slideController);
+        Presentation presentation = PresentationFactory.createPresentation();
         try {
             Reader reader = AccessorFactory.getReaderWithArgs(argv);
 
