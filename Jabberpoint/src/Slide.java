@@ -34,11 +34,6 @@ public class Slide {
         title = newTitle;
     }
 
-    //Create a TextItem out of a String and add the TextItem
-    public void append(int level, String message) {
-        append(new TextItem(level, message));
-    }
-
     //Returns the SlideItem
     public SlideItem getSlideItem(int number) {
         return items.elementAt(number);
