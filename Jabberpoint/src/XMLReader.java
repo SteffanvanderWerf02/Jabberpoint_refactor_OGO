@@ -51,7 +51,7 @@ public class XMLReader extends Reader {
             max = slides.getLength();
             for (slideNumber = 0; slideNumber < max; slideNumber++) {
                 Element xmlSlide = (Element) slides.item(slideNumber);
-                Slide slide = new Slide();
+                Slide slide = SlideFactory.createSlide();
                 slide.setTitle(getTitle(xmlSlide, SLIDETITLE));
                 presentation.getSlideController().append(slide);
 
@@ -85,9 +85,9 @@ public class XMLReader extends Reader {
         }
 
         String type = attributes.getNamedItem(KIND).getTextContent();
-        SlideItem slideItem = SlideFactory.createSlideItem(type, level, item);
+        SlideItem slideItem = SlideItemFactory.createSlideItemWithItemAndType(type, level, item);
         if (slideItem != null) {
-            SlideFactory.appendSlideItem(slideItem, slide);
+            SlideFactory.appendSlideItemToSlide(slideItem, slide);
         }
     }
 }
