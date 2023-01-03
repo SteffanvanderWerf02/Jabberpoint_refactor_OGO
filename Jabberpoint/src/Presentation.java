@@ -21,24 +21,26 @@ public class Presentation {
         this.slideController = slideController;
         slideController.clear();
     }
+    public SlideViewerComponent getSlideViewerComponent() {
+        return this.slideViewComponent;
+    }
 
+    public void setShowView(SlideViewerComponent slideViewerComponent) {
+        this.slideViewComponent = slideViewerComponent;
+    }
     public SlideController getSlideController() {
-        return slideController;
+        return this.slideController;
     }
     public void setSlideController(SlideController controller) {
         this.slideController = controller;
     }
 
     public String getTitle() {
-        return showTitle;
+        return this.showTitle;
     }
 
     public void setTitle(String nt) {
-        showTitle = nt;
-    }
-
-    public void setShowView(SlideViewerComponent slideViewerComponent) {
-        this.slideViewComponent = slideViewerComponent;
+        this.showTitle = nt;
     }
 
     public void updateSlideView() {

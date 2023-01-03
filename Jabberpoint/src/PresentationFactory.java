@@ -5,4 +5,8 @@ public class PresentationFactory {
 
         return presentation;
     }
+
+    public static void addSlideViewerComponent(Presentation presentation, SlideViewerComponent slideViewerComponent) {
+        presentation.setShowView(slideViewerComponent);
+    }
 }

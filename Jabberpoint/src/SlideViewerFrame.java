@@ -19,21 +19,22 @@ public class SlideViewerFrame extends JFrame {
 
     public SlideViewerFrame(String title, Presentation presentation) {
         super(title);
-        SlideViewerComponent slideViewerComponent = new SlideViewerComponent(presentation, this);
-        presentation.setShowView(slideViewerComponent);
-        setupWindow(slideViewerComponent, presentation);
+        SlideViewerComponent slideViewerComponent = SlideViewerComponentFactory.createSlideViewerComponent(presentation,this);
+        PresentationFactory.addSlideViewerComponent(presentation, slideViewerComponent);
+
+        //setup GUI
+        setupWindow(presentation);
     }
 
     //Setup the GUI
-    public void setupWindow(SlideViewerComponent
-                                    slideViewerComponent, Presentation presentation) {
+    public void setupWindow(Presentation presentation) {
         setTitle(JABTITLE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
             }
         });
-        getContentPane().add(slideViewerComponent);
+        getContentPane().add(presentation.getSlideViewerComponent());
         addKeyListener(new KeyController(presentation)); //Add a controller
         setMenuBar(new MenuController(this, presentation));    //Add another controller
         setSize(new Dimension(WIDTH, HEIGHT)); //Same sizes a slide has
