@@ -36,7 +36,6 @@ public class JabberPoint {
                 reader.loadFile(presentation, argv[0]);
             }
 
-            presentation.getSlideController().setSlideNumber(0);
             presentation.updateSlideView();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,
