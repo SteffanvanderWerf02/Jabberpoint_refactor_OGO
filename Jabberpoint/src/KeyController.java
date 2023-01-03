@@ -32,7 +32,7 @@ public class KeyController extends KeyAdapter {
                 break;
             case 'q':
             case 'Q':
-                System.exit(0);
+                presentation.exit(0);
                 break; //Should not be reached
             default:
                 break;
