@@ -2,6 +2,7 @@ import java.awt.*;
 
 public class StyleFactory {
     public static Style[] styles; // de styles
+
     public static void createStyles() {
         styles = new Style[5];
         // De styles zijn vast ingecodeerd.

@@ -8,6 +8,7 @@ public class SlideController {
         this.showList = new ArrayList<>();
         this.currentSlideNumber = 0;
     }
+
     public int getSize() {
         return showList.size();
     }
@@ -19,8 +20,8 @@ public class SlideController {
 
     //Change the current slide number and report it the window
     public void setSlideNumber(int number) {
-            // If the number is out of range, do nothing
-         if (SlideExists(number)){
+        // If the number is out of range, do nothing
+        if (SlideExists(number)) {
             currentSlideNumber = number;
         }
     }

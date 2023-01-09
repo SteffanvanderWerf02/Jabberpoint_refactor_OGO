@@ -7,6 +7,7 @@ public class AccessorFactory {
             throw new IllegalArgumentException("Unknown file type: " + filename);
         }
     }
+
     public static Reader getReaderWithArgs(String[] arguments) {
         if (arguments.length == 0) {
             return new DemoPresentationReader();
@@ -14,7 +15,6 @@ public class AccessorFactory {
             return new XMLReader();
         }
     }
-
 
 
     public static Writer getWriter(String filename) {

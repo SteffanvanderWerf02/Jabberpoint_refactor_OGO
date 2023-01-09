@@ -1,8 +1,3 @@
-import java.util.HashMap;
-import java.util.HashSet;
-
-import static javax.swing.UIManager.put;
-
 public class DemoPresentationReader extends Reader {
 
 

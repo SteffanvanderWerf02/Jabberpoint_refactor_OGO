@@ -1,3 +1,4 @@
+import Utility.ErrorMessage;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -14,24 +15,17 @@ public class XMLReader extends Reader {
     /**
      * Default API to use.
      */
-    protected static final String DEFAULT_API_TO_USE = "dom";
+    private static final String DEFAULT_API_TO_USE = "dom";
 
     /**
      * Names of xml tags of attributes
      */
-    protected static final String SHOWTITLE = "showtitle";
-    protected static final String SLIDETITLE = "title";
-    protected static final String SLIDE = "slide";
-    protected static final String ITEM = "item";
-    protected static final String LEVEL = "level";
-    protected static final String KIND = "kind";
-
-    /**
-     * Text of messages
-     */
-    protected static final String PCE = "Parser Configuration Exception";
-    protected static final String NFE = "Number Format Exception";
-
+    private static final String SHOWTITLE = "showtitle";
+    private static final String SLIDETITLE = "title";
+    private static final String SLIDE = "slide";
+    private static final String ITEM = "item";
+    private static final String LEVEL = "level";
+    private static final String KIND = "kind";
 
     private String getTitle(Element element, String tagName) {
         NodeList titles = element.getElementsByTagName(tagName);
@@ -67,7 +61,7 @@ public class XMLReader extends Reader {
         } catch (SAXException sax) {
             System.err.println(sax.getMessage());
         } catch (ParserConfigurationException pcx) {
-            System.err.println(PCE);
+            System.err.println(ErrorMessage.PCE);
         }
     }
 
@@ -80,7 +74,7 @@ public class XMLReader extends Reader {
             try {
                 level = Integer.parseInt(levelText);
             } catch (NumberFormatException x) {
-                System.err.println(NFE);
+                System.err.println(ErrorMessage.NFE);
             }
         }
 

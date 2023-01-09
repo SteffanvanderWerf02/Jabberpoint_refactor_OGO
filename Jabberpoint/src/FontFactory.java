@@ -1,4 +1,4 @@
-import java.awt.Font;
+import java.awt.*;
 
 public class FontFactory {
     public static Font createFont(String name, int style, int size) {

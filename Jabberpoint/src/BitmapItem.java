@@ -1,3 +1,6 @@
+import Utility.ErrorMessage;
+import Utility.Utility;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -18,10 +21,6 @@ public class BitmapItem extends SlideItem {
     private BufferedImage bufferedImage;
     private String imageName;
 
-    protected static final String FILE = "File ";
-    protected static final String NOTFOUND = " not found";
-
-
     //level indicates the item-level; name indicates the name of the file with the image
     public BitmapItem(int level, String name) {
         super(level);
@@ -29,7 +28,7 @@ public class BitmapItem extends SlideItem {
         try {
             bufferedImage = ImageIO.read(new File(imageName));
         } catch (IOException e) {
-            System.err.println(FILE + imageName + NOTFOUND);
+            System.err.println(Utility.FILE + imageName + ErrorMessage.NOTFOUND);
         }
     }
 
