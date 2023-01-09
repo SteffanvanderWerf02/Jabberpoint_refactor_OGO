@@ -22,7 +22,7 @@ public class JabberPoint {
      */
     public static void main(String[] argv) {
 
-        Style.createStyles();
+        StyleFactory.createStyles();
         Presentation presentation = PresentationFactory.createPresentation();
         try {
             Reader reader = AccessorFactory.getReaderWithArgs(argv);
