@@ -29,15 +29,9 @@ public class Presentation {
     public void setShowView(SlideViewerComponent slideViewerComponent) {
         this.slideViewComponent = slideViewerComponent;
     }
-
     public SlideController getSlideController() {
         return this.slideController;
     }
-
-    public void setSlideController(SlideController controller) {
-        this.slideController = controller;
-    }
-
     public String getTitle() {
         return this.showTitle;
     }

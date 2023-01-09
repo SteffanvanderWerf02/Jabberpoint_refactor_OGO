@@ -19,7 +19,6 @@ public class JabberPoint {
      * The main program
      */
     public static void main(String[] argv) {
-
         StyleFactory.createStyles();
         Presentation presentation = PresentationFactory.createPresentation();
         try {
