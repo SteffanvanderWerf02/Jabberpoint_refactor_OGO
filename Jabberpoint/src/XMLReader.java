@@ -71,7 +71,7 @@ public class XMLReader extends Reader {
         }
     }
 
-    protected void loadSlideItem(Slide slide, Element item) {
+    private void loadSlideItem(Slide slide, Element item) {
         int level = 1; // default
         NamedNodeMap attributes = item.getAttributes();
         String levelText = attributes.getNamedItem(LEVEL).getTextContent();
