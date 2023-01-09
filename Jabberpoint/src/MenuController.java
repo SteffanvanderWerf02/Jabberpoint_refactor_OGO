@@ -1,3 +1,7 @@
+import Utility.ButtonNames;
+import Utility.ErrorMessage;
+import Utility.Utility;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,104 +19,83 @@ public class MenuController extends MenuBar {
     private Frame parent; //The frame, only used as parent for the Dialogs
     private Presentation presentation; //Commands are given to the presentation
 
-    private static final long serialVersionUID = 227L;
-
-    protected static final String ABOUT = "About";
-    protected static final String FILE = "File";
-    protected static final String EXIT = "Exit";
-    protected static final String GOTO = "Go to";
-    protected static final String HELP = "Help";
-    protected static final String NEW = "New";
-    protected static final String NEXT = "Next";
-    protected static final String OPEN = "Open";
-    protected static final String PAGENR = "Page number?";
-    protected static final String PREV = "Prev";
-    protected static final String SAVE = "Save";
-    protected static final String VIEW = "View";
-
-    protected static final String TESTFILE = "testPresentation.xml";
-    protected static final String SAVEFILE = "savedPresentation.xml";
-
-    protected static final String IOEX = "IO Exception: ";
-    protected static final String LOADERR = "Load Error";
-    protected static final String SAVEERR = "Save Error";
 
     public MenuController(Frame frame, Presentation pres) {
         parent = frame;
         presentation = pres;
         MenuItem menuItem;
-        Menu fileMenu = new Menu(FILE);
-        fileMenu.add(menuItem = mkMenuItem(OPEN));
+        Menu fileMenu = new Menu(ButtonNames.FILE);
+        fileMenu.add(menuItem = mkMenuItem(ButtonNames.OPEN));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.getSlideController().clear();
-                Reader reader = AccessorFactory.getReader(TESTFILE);
+                Reader reader = AccessorFactory.getReader(Utility.TESTFILE);
                 try {
-                    reader.loadFile(presentation, TESTFILE);
+                    reader.loadFile(presentation, Utility.TESTFILE);
                     presentation.getSlideController().setSlideNumber(0);
                     presentation.updateSlideView();
                 } catch (IOException exc) {
-                    JOptionPane.showMessageDialog(parent, IOEX + exc,
-                            LOADERR, JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(parent, ErrorMessage.IOEX + exc,
+                            ErrorMessage.LOADERR, JOptionPane.ERROR_MESSAGE);
                 }
                 parent.repaint();
             }
         });
-        fileMenu.add(menuItem = mkMenuItem(NEW));
+        fileMenu.add(menuItem = mkMenuItem(ButtonNames.NEW));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.getSlideController().clear();
                 parent.repaint();
             }
         });
-        fileMenu.add(menuItem = mkMenuItem(SAVE));
+        fileMenu.add(menuItem = mkMenuItem(ButtonNames.SAVE));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Writer writer = AccessorFactory.getWriter(SAVEFILE);
+                Writer writer = AccessorFactory.getWriter(Utility.SAVEFILE);
                 try {
-                    writer.saveFile(presentation, SAVEFILE);
+                    writer.saveFile(presentation, Utility.SAVEFILE);
                     presentation.updateSlideView();
                 } catch (IOException exc) {
-                    JOptionPane.showMessageDialog(parent, IOEX + exc,
-                            SAVEERR, JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(parent, ErrorMessage.IOEX + exc,
+                            ErrorMessage.SAVEERR, JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         fileMenu.addSeparator();
-        fileMenu.add(menuItem = mkMenuItem(EXIT));
+        fileMenu.add(menuItem = mkMenuItem(ButtonNames.EXIT));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.exit(0);
             }
         });
         add(fileMenu);
-        Menu viewMenu = new Menu(VIEW);
-        viewMenu.add(menuItem = mkMenuItem(NEXT));
+        Menu viewMenu = new Menu(ButtonNames.VIEW);
+        viewMenu.add(menuItem = mkMenuItem(ButtonNames.NEXT));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.getSlideController().nextSlide();
                 presentation.updateSlideView();
             }
         });
-        viewMenu.add(menuItem = mkMenuItem(PREV));
+        viewMenu.add(menuItem = mkMenuItem(ButtonNames.PREV));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.getSlideController().prevSlide();
                 presentation.updateSlideView();
             }
         });
-        viewMenu.add(menuItem = mkMenuItem(GOTO));
+        viewMenu.add(menuItem = mkMenuItem(ButtonNames.GOTO));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
-                String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
+                String pageNumberStr = JOptionPane.showInputDialog((Object) ButtonNames.PAGENR);
                 int pageNumber = Integer.parseInt(pageNumberStr);
                 presentation.getSlideController().setSlideNumber(pageNumber - 1);
                 presentation.updateSlideView();
             }
         });
         add(viewMenu);
-        Menu helpMenu = new Menu(HELP);
-        helpMenu.add(menuItem = mkMenuItem(ABOUT));
+        Menu helpMenu = new Menu(ButtonNames.HELP);
+        helpMenu.add(menuItem = mkMenuItem(ButtonNames.ABOUT));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 AboutBox.show(parent);

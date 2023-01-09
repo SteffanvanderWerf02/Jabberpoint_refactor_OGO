@@ -12,6 +12,7 @@ import java.awt.image.ImageObserver;
 public abstract class SlideItem {
     private int level = 0; //The level of the SlideItem
     protected Style style; //The style of the SlideItem
+
     public SlideItem(int lev) {
         this.level = lev;
         this.style = Style.getStyle(this.level);

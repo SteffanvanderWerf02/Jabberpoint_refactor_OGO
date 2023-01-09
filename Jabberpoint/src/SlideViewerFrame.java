@@ -1,3 +1,6 @@
+import Utility.SlideSize;
+import Utility.Utility;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -13,13 +16,9 @@ import java.awt.event.WindowEvent;
 public class SlideViewerFrame extends JFrame {
     private static final long serialVersionUID = 3227L;
 
-    private static final String JABTITLE = "Jabberpoint 1.6 - OU";
-    public final static int WIDTH = 1200;
-    public final static int HEIGHT = 800;
-
     public SlideViewerFrame(String title, Presentation presentation) {
         super(title);
-        SlideViewerComponent slideViewerComponent = SlideViewerComponentFactory.createSlideViewerComponent(presentation,this);
+        SlideViewerComponent slideViewerComponent = SlideViewerComponentFactory.createSlideViewerComponent(presentation, this);
         PresentationFactory.addSlideViewerComponent(presentation, slideViewerComponent);
 
         //setup GUI
@@ -28,7 +27,7 @@ public class SlideViewerFrame extends JFrame {
 
     //Setup the GUI
     public void setupWindow(Presentation presentation) {
-        setTitle(JABTITLE);
+        setTitle(Utility.JABTITLE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
@@ -37,7 +36,7 @@ public class SlideViewerFrame extends JFrame {
         getContentPane().add(presentation.getSlideViewerComponent());
         addKeyListener(new KeyController(presentation)); //Add a controller
         setMenuBar(new MenuController(this, presentation));    //Add another controller
-        setSize(new Dimension(WIDTH, HEIGHT)); //Same sizes a slide has
+        setSize(new Dimension(SlideSize.WIDTH, SlideSize.HEIGHT)); //Same sizes a slide has
         setVisible(true);
     }
 }

@@ -1,3 +1,5 @@
+import Utility.SlideSize;
+
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.font.LineBreakMeasurer;
@@ -20,8 +22,6 @@ import java.util.List;
 
 public class TextItem extends SlideItem {
     private String text;
-
-    private static final String EMPTYTEXT = "No Text Given";
 
     //A textitem of int level with text string
     public TextItem(int level, String string) {
@@ -86,7 +86,7 @@ public class TextItem extends SlideItem {
         Graphics2D g2d = (Graphics2D) g;
         FontRenderContext frc = g2d.getFontRenderContext();
         LineBreakMeasurer measurer = new LineBreakMeasurer(attrStr.getIterator(), frc);
-        float wrappingWidth = (Slide.WIDTH - s.indent) * scale;
+        float wrappingWidth = (SlideSize.WIDTH - s.indent) * scale;
         while (measurer.getPosition() < getText().length()) {
             TextLayout layout = measurer.nextLayout(wrappingWidth);
             layouts.add(layout);

@@ -21,6 +21,7 @@ public class Presentation {
         this.slideController = slideController;
         slideController.clear();
     }
+
     public SlideViewerComponent getSlideViewerComponent() {
         return this.slideViewComponent;
     }
@@ -28,9 +29,11 @@ public class Presentation {
     public void setShowView(SlideViewerComponent slideViewerComponent) {
         this.slideViewComponent = slideViewerComponent;
     }
+
     public SlideController getSlideController() {
         return this.slideController;
     }
+
     public void setSlideController(SlideController controller) {
         this.slideController = controller;
     }
@@ -46,6 +49,7 @@ public class Presentation {
     public void updateSlideView() {
         slideViewComponent.update(this, this.slideController.getCurrentSlide());
     }
+
     public void exit(int n) {
         System.exit(n);
     }

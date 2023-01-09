@@ -1,16 +1,21 @@
+import Utility.ErrorMessage;
 import org.w3c.dom.Element;
+
 public class SlideItemFactory {
-    protected static final String TEXT = "text";
-    protected static final String IMAGE = "image";
-    protected static final String UNKNOWNTYPE = "Unknown Element type";
+    private static final String TEXT = "text";
+    private static final String IMAGE = "image";
+
+
     public static SlideItem createSlideItemWithItemAndType(String type, int level, Element item) {
         if (TEXT.equals(type)) {
-            return new TextItem(level, item.getTextContent());
+            String emptyString = "";
+            String text = (!emptyString.equals(item.getTextContent())) ? item.getTextContent() : ErrorMessage.EMPTYTEXT;
+            return new TextItem(level, text);
         } else {
             if (IMAGE.equals(type)) {
                 return new BitmapItem(level, item.getTextContent());
             } else {
-                System.err.println(UNKNOWNTYPE);
+                System.err.println(ErrorMessage.UNKNOWNTYPE);
             }
         }
 

@@ -1,3 +1,6 @@
+import Utility.DefaultFont;
+import Utility.SlideSize;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -15,26 +18,17 @@ public class SlideViewerComponent extends JComponent {
     private Font labelFont; //The font for labels
     private Presentation presentation; //The presentation
     private JFrame frame;
-
     private static final long serialVersionUID = 227L;
 
-    private static final Color BGCOLOR = Color.white;
-    private static final Color COLOR = Color.black;
-    private static final String FONTNAME = "Dialog";
-    private static final int FONTSTYLE = Font.BOLD;
-    private static final int FONTHEIGHT = 10;
-    private static final int XPOS = 1100;
-    private static final int YPOS = 20;
-
     public SlideViewerComponent(Presentation pres, JFrame frame) {
-        setBackground(BGCOLOR);
+        setBackground(DefaultFont.BGCOLOR);
         presentation = pres;
-        labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
+        labelFont = FontFactory.createFont(DefaultFont.FONTNAME, DefaultFont.FONTSTYLE, DefaultFont.FONTHEIGHT);
         this.frame = frame;
     }
 
     public Dimension getPreferredSize() {
-        return new Dimension(Slide.WIDTH, Slide.HEIGHT);
+        return new Dimension(SlideSize.WIDTH, SlideSize.HEIGHT);
     }
 
     public void update(Presentation presentation, Slide data) {
@@ -50,16 +44,16 @@ public class SlideViewerComponent extends JComponent {
 
     //Draw the slide
     public void paintComponent(Graphics g) {
-        g.setColor(BGCOLOR);
+        g.setColor(DefaultFont.BGCOLOR);
         g.fillRect(0, 0, getSize().width, getSize().height);
         if (presentation.getSlideController().getSlideNumber() < 0 || slide == null) {
             return;
         }
         g.setFont(labelFont);
-        g.setColor(COLOR);
+        g.setColor(DefaultFont.COLOR);
         g.drawString("Slide " + (1 + presentation.getSlideController().getSlideNumber()) + " of " +
-                presentation.getSlideController().getSize(), XPOS, YPOS);
-        Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
+                presentation.getSlideController().getSize(), DefaultFont.XPOS, DefaultFont.YPOS);
+        Rectangle area = new Rectangle(0, DefaultFont.YPOS, getWidth(), (getHeight() - DefaultFont.YPOS));
         slide.draw(g, area, this);
     }
 }
