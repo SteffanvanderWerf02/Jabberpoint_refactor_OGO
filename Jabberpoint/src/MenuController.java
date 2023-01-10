@@ -25,7 +25,7 @@ public class MenuController extends MenuBar {
         presentation = pres;
         MenuItem menuItem;
         Menu fileMenu = new Menu(ButtonNames.FILE);
-        fileMenu.add(menuItem = mkMenuItem(ButtonNames.OPEN));
+        fileMenu.add(menuItem = MenuItemFactory.createMenuItem(ButtonNames.OPEN));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.getSlideController().clear();
@@ -41,14 +41,14 @@ public class MenuController extends MenuBar {
                 parent.repaint();
             }
         });
-        fileMenu.add(menuItem = mkMenuItem(ButtonNames.NEW));
+        fileMenu.add(menuItem = MenuItemFactory.createMenuItem(ButtonNames.NEW));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.getSlideController().clear();
                 parent.repaint();
             }
         });
-        fileMenu.add(menuItem = mkMenuItem(ButtonNames.SAVE));
+        fileMenu.add(menuItem = MenuItemFactory.createMenuItem(ButtonNames.SAVE));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Writer writer = AccessorFactory.getWriter(Utility.SAVEFILE);
@@ -62,7 +62,7 @@ public class MenuController extends MenuBar {
             }
         });
         fileMenu.addSeparator();
-        fileMenu.add(menuItem = mkMenuItem(ButtonNames.EXIT));
+        fileMenu.add(menuItem = MenuItemFactory.createMenuItem(ButtonNames.EXIT));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.exit(0);
@@ -70,21 +70,21 @@ public class MenuController extends MenuBar {
         });
         add(fileMenu);
         Menu viewMenu = new Menu(ButtonNames.VIEW);
-        viewMenu.add(menuItem = mkMenuItem(ButtonNames.NEXT));
+        viewMenu.add(menuItem = MenuItemFactory.createMenuItem(ButtonNames.NEXT));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.getSlideController().nextSlide();
                 presentation.updateSlideView();
             }
         });
-        viewMenu.add(menuItem = mkMenuItem(ButtonNames.PREV));
+        viewMenu.add(menuItem = MenuItemFactory.createMenuItem(ButtonNames.PREV));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 presentation.getSlideController().prevSlide();
                 presentation.updateSlideView();
             }
         });
-        viewMenu.add(menuItem = mkMenuItem(ButtonNames.GOTO));
+        viewMenu.add(menuItem = MenuItemFactory.createMenuItem(ButtonNames.GOTO));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 String pageNumberStr = JOptionPane.showInputDialog((Object) ButtonNames.PAGENR);
@@ -95,17 +95,12 @@ public class MenuController extends MenuBar {
         });
         add(viewMenu);
         Menu helpMenu = new Menu(ButtonNames.HELP);
-        helpMenu.add(menuItem = mkMenuItem(ButtonNames.ABOUT));
+        helpMenu.add(menuItem = MenuItemFactory.createMenuItem(ButtonNames.ABOUT));
         menuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
                 AboutBox.show(parent);
             }
         });
         setHelpMenu(helpMenu);        //Needed for portability (Motif, etc.).
-    }
-
-    //Creating a menu-item
-    public MenuItem mkMenuItem(String name) {
-        return new MenuItem(name, new MenuShortcut(name.charAt(0)));
     }
 }
