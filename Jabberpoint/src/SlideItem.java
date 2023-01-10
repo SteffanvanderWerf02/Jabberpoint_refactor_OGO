@@ -25,12 +25,7 @@ public abstract class SlideItem {
     }
 
     //Returns the bounding box
-    public abstract Rectangle getBoundingBox(Graphics g,
-                                             ImageObserver observer, float scale, Style style);
-
-    public Style getStyle() {
-        return this.style;
-    }
+    public abstract Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale);
 
     //Draws the item
     public abstract void draw(int x, int y, float scale, Graphics g, ImageObserver observer);

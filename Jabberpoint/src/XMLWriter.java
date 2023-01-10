@@ -19,7 +19,7 @@ public class XMLWriter extends Writer {
             out.println("<title>" + slide.getTitle() + "</title>");
             Vector<SlideItem> slideItems = slide.getSlideItems();
             for (int itemNumber = 0; itemNumber < slideItems.size(); itemNumber++) {
-                SlideItem slideItem = (SlideItem) slideItems.elementAt(itemNumber);
+                SlideItem slideItem = slideItems.elementAt(itemNumber);
                 out.print("<item kind=");
                 if (slideItem instanceof TextItem) {
                     out.print("\"text\" level=\"" + slideItem.getLevel() + "\">");

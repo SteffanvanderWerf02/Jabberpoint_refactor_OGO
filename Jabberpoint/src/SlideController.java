@@ -41,7 +41,7 @@ public class SlideController {
     }
 
     //Remove the presentation
-    void clear() {
+    public void clear() {
         showList = new ArrayList<>();
         setSlideNumber(-1);
     }

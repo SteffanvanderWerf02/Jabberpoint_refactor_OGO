@@ -9,7 +9,7 @@
 public class Presentation {
     private String showTitle; //The title of the presentation
     private SlideViewerComponent slideViewComponent; //The view component of the slides
-    private SlideController slideController; //The controller of the slides
+    private final SlideController slideController; //The controller of the slides
 
     public Presentation(SlideController slideController) {
         this.slideViewComponent = null;
@@ -29,9 +29,11 @@ public class Presentation {
     public void setShowView(SlideViewerComponent slideViewerComponent) {
         this.slideViewComponent = slideViewerComponent;
     }
+
     public SlideController getSlideController() {
         return this.slideController;
     }
+
     public String getTitle() {
         return this.showTitle;
     }

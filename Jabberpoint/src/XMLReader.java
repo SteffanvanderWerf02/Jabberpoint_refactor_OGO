@@ -57,7 +57,7 @@ public class XMLReader extends Reader {
                 }
             }
         } catch (IOException iox) {
-            System.err.println(iox.toString());
+            System.err.println(iox);
         } catch (SAXException sax) {
             System.err.println(sax.getMessage());
         } catch (ParserConfigurationException pcx) {

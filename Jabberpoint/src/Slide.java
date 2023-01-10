@@ -56,11 +56,11 @@ public class Slide {
         //The title is treated separately
         SlideItem slideItem = SlideItemFactory.createSlideItemWithLevelAndContent(0, getTitle());
         slideItem.draw(area.x, y, scale, g, view);
-        y += slideItem.getBoundingBox(g, view, scale, slideItem.getStyle()).height;
+        y += slideItem.getBoundingBox(g, view, scale).height;
         for (int number = 0; number < getSize(); number++) {
             slideItem = getSlideItems().elementAt(number);
             slideItem.draw(area.x, y, scale, g, view);
-            y += slideItem.getBoundingBox(g, view, scale, slideItem.getStyle()).height;
+            y += slideItem.getBoundingBox(g, view, scale).height;
         }
     }
 

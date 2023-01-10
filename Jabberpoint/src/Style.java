@@ -14,11 +14,11 @@ public class Style {
 
 
     private static final String FONTNAME = "Helvetica";
-    int indent;
-    Color color;
-    Font font;
-    int fontSize;
-    int leading;
+    protected int indent;
+    protected Color color;
+    protected Font font;
+    protected int fontSize;
+    protected int leading;
 
     public static Style getStyle(int level) {
         if (level >= StyleFactory.styles.length) {

@@ -21,18 +21,18 @@ public class KeyController extends KeyAdapter {
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_ENTER:
             case '+':
-                presentation.getSlideController().nextSlide();
-                presentation.updateSlideView();
+                this.presentation.getSlideController().nextSlide();
+                this.presentation.updateSlideView();
                 break;
             case KeyEvent.VK_PAGE_UP:
             case KeyEvent.VK_UP:
             case '-':
-                presentation.getSlideController().prevSlide();
-                presentation.updateSlideView();
+                this.presentation.getSlideController().prevSlide();
+                this.presentation.updateSlideView();
                 break;
             case 'q':
             case 'Q':
-                presentation.exit(0);
+                this.presentation.exit(0);
                 break; //Should not be reached
             default:
                 break;
